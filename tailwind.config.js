@@ -25,6 +25,13 @@ export default {
         color5:{
           DEFAULT: '#24305E'
         },
+        color6:{
+          DEFAULT: '#E6F7FF'
+        },
+      },
+      width:{
+        '640':'48rem',
+        '860':'54rem',
       }
     },
   },
