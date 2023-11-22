@@ -31,7 +31,7 @@ function Header() {
       id="header"
       className={`w-full  ${
         isTop ? "top-0 relative " : scrollUp ? "top-0 fixed" : "-top-full fixed"
-      }  transition-all duration-500 ease-in-out `}
+      }  transition-all duration-500 ease-in-out z-50`}
     >
       <nav className="flex z-50 relative items-center bg-white shadow-lg justify-between px-24 py-3">
         <div className="flex items-center gap-10">
