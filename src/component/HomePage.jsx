@@ -1,3 +1,4 @@
+import FloatingBtn from "./floatingbtn/FloatingBtn";
 import Header from "./header/header";
 import HeroSection from "./heroSection/HeroSection";
 import HeroSubSection from "./heroSection/HeroSubSection";
@@ -8,6 +9,7 @@ function HomePage() {
     return (
       <>
         <Header></Header>
+        <FloatingBtn></FloatingBtn>
         <HeroSection></HeroSection>
         <Poster></Poster>
         <HeroSubSection></HeroSubSection>
