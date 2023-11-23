@@ -8,10 +8,12 @@ import CeritaPage from "./pages/CeritaPage";
 import EdukasiPage from "./pages/EdukasiPage";
 import EventPage from "./pages/EventPage";
 import DashboardPage from "./pages/DashboardPage";
+import Header from "./component/header/header";
 
 function App() {
   return (
     <>
+      <Header></Header>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
