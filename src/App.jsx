@@ -8,10 +8,13 @@ import CeritaPage from "./pages/CeritaPage";
 import EdukasiPage from "./pages/EdukasiPage";
 import EventPage from "./pages/EventPage";
 import DashboardPage from "./pages/DashboardPage";
+import Header from "./component/header/header";
+import LaporanPage from "./pages/LaporanPage";
 
 function App() {
   return (
     <>
+      <Header></Header>
       <Routes>
         <Route path="/" element={<HomePage/>}/>
         <Route path="/login" element={<LoginPage/>}/>
@@ -21,6 +24,7 @@ function App() {
         <Route path="/edukasi" element={<EdukasiPage/>}/>
         <Route path="/event" element={<EventPage/>}/>
         <Route path="/dashboard" element={<DashboardPage/>}/>
+        <Route path="/laporan" element={<LaporanPage/>}/>
       </Routes>
     </>
   );

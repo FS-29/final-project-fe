@@ -5,6 +5,7 @@ import LoginLogo from "../../assets/svg/LoginLogo";
 import { useState } from "react";
 import { useEffect } from "react";
 import FloatingProfil from "./FloatingProfil";
+import { NavLink } from "react-router-dom";
 
 function Header() {
   const [isTop, setIsTop] = useState(true);
@@ -35,23 +36,27 @@ function Header() {
     >
       <nav className="flex z-50 relative items-center bg-white shadow-lg justify-between px-24 py-3">
         <div className="flex items-center gap-10">
-          <a href="/edukasi" >
+          <NavLink to="/edukasi" className={({ isActive }) => isActive && ""}>
             <Subcomp key={1} text={"Edukasi"}></Subcomp>
-          </a>
-          <a href="/">
+          </NavLink>
+          <NavLink to="/cerita" className={({ isActive }) => isActive && ""}>
             <Subcomp key={2} text={"Cerita Kami"}></Subcomp>
-          </a>
+          </NavLink>
         </div>
-        <a href="/" className="hover:scale-110 transition-all duration-100">
-          <img src={headerLogo} className="w-16" alt="Safe Space Squad" />
-        </a>
+        <NavLink to="/" className={({ isActive }) => isActive && ""}>
+          <img
+            src={headerLogo}
+            className="w-16 hover:scale-110 transition-all duration-100"
+            alt="Safe Space Squad"
+          />
+        </NavLink>
         <div className="flex items-center gap-10">
-          <a href="/">
+          <NavLink to="/event" className={({ isActive }) => isActive && ""}>
             <Subcomp key={3} text={"Event"}></Subcomp>
-          </a>
-          <a href="/">
+          </NavLink>
+          <NavLink to="/berita" className={({ isActive }) => isActive && ""}>
             <Subcomp key={4} text={"Berita"}></Subcomp>
-          </a>
+          </NavLink>
 
           {isLogin ? (
             <img
@@ -61,10 +66,12 @@ function Header() {
               onClick={() => setFloating(!floating)}
             />
           ) : (
-            <a href="" className="flex items-center gap-4 hover:scale-110 transition-all duration-100">
-              <Subcomp key={5} text={"Masuk"}></Subcomp>
-              <LoginLogo styleSVG={"fill-black"}></LoginLogo>
-            </a>
+            <NavLink to="/login" className={({ isActive }) => isActive && ""}>
+              <div className="flex items-center gap-4 hover:scale-110 transition-all duration-100">
+                <Subcomp key={5} text={"Masuk"}></Subcomp>
+                <LoginLogo styleSVG={"fill-black"}></LoginLogo>
+              </div>
+            </NavLink>
           )}
         </div>
       </nav>

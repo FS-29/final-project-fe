@@ -1,7 +1,7 @@
 import BtnProfil from "./BtnProfil";
 import PersonLogo from "../../assets/svg/PersonLogo";
 import OutLogo from "../../assets/svg/OutLogo";
-
+import { NavLink } from "react-router-dom";
 
 function FloatingProfil({ img }) {
   return (
@@ -17,8 +17,30 @@ function FloatingProfil({ img }) {
         </h3>
       </div>
       <div className="flex flex-col gap-2">
-        <BtnProfil icons={<PersonLogo styleSVG={"fill-black group-hover:fill-gray-100 w-7 h-7"}></PersonLogo>} text={'Dashboard'} onClick={()=>console.Console.log('bisa')}></BtnProfil>
-        <BtnProfil icons={<OutLogo styleSVG={"w-7 h-7 stroke-black group-hover:stroke-gray-100 fill-none"}></OutLogo>} text={'Keluar'}></BtnProfil>
+        <NavLink to="/dashboard">
+          <BtnProfil
+            icons={
+              <PersonLogo
+                styleSVG={"fill-black group-hover:fill-gray-100 w-7 h-7"}
+              ></PersonLogo>
+            }
+            text={"Dashboard"}
+            onClick={() => console.Console.log("bisa")}
+          ></BtnProfil>
+        </NavLink>
+        <NavLink to="/login">
+          {" "}
+          <BtnProfil
+            icons={
+              <OutLogo
+                styleSVG={
+                  "w-7 h-7 stroke-black group-hover:stroke-gray-100 fill-none"
+                }
+              ></OutLogo>
+            }
+            text={"Keluar"}
+          ></BtnProfil>
+        </NavLink>
       </div>
     </div>
   );
