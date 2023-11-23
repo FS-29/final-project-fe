@@ -28,6 +28,9 @@ export default {
         color6:{
           DEFAULT: '#E6F7FF'
         },
+        color7:{
+          DEFAULT: '#D9D9D9'
+        },
       },
       width:{
         '640':'48rem',
