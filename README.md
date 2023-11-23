@@ -4,6 +4,7 @@ library terinstall:
 -tailwind
 -axios
 -react-redux
+-react-router-DOM
 
 jika mau menambahkan warna custom baru, boxshadow baru dll
 pergi ke file 'tailwind.config.js' tambah dengan format seperit berikut:
