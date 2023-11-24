@@ -1,7 +1,7 @@
 function CeritaPage() {
     return(
         <>
-        <h1>Cerita</h1>
+        <h1>Berita</h1>
         </>
     )
 }
