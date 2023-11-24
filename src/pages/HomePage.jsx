@@ -7,6 +7,7 @@ import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
 import API from '../Sevices/API';
 import CeritaComp from '../component/ceritaComp/ceritaComp';
+import BeritaComp from '../component/beritaComp/BeritaComp';
 
 
 function HomePage() {
@@ -39,6 +40,7 @@ function HomePage() {
         <HeroSubSection></HeroSubSection>
         <Poster2></Poster2>
         {post.length>0? <CeritaComp posts={post} />:null }
+        {post.length>0? <BeritaComp posts={post} />:null }
         
       </>
     );
