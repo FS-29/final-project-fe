@@ -30,7 +30,7 @@ export default {
           DEFAULT: '#E6F7FF'
         },
         color7:{
-          DEFAULT: '#D9D9D9'
+          DEFAULT: '#FAFAFA'
         },
       },
       width:{
