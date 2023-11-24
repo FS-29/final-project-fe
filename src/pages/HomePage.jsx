@@ -5,8 +5,8 @@ import HeroSection from "../component/heroSection/HeroSection";
 import HeroSubSection from "../component/heroSection/HeroSubSection";
 import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
-import CeritaPage from "./CeritaPage";
 import API from '../Sevices/API';
+import CeritaComp from '../component/ceritaComp/ceritaComp';
 
 
 function HomePage() {
@@ -38,7 +38,7 @@ function HomePage() {
         <Poster></Poster>
         <HeroSubSection></HeroSubSection>
         <Poster2></Poster2>
-        {post.length>0? <CeritaPage posts={post} />:null }
+        {post.length>0? <CeritaComp posts={post} />:null }
         
       </>
     );
