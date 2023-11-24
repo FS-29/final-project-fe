@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 function HeroSubSection() {
   return (
     <div className="z-0 flex justify-center relative -top-32 px-24">
@@ -18,12 +20,14 @@ function HeroSubSection() {
             serius pada korban.
           </p>
         </div>
-        <button
-          className="py-2 px-4 rounded-2xl border-solid border-white border-4 shadow-xl bg-color5 text-xl text-white font-jakarta font-bold
+        <NavLink to="/edukasi">
+          <button
+            className="py-2 px-4 rounded-2xl border-solid border-white border-4 shadow-xl bg-color5 text-xl text-white font-jakarta font-bold
                     hover:bg-color4 active:bg-slate-500 active:border-slate-200 active:shadow-none focus:bg-color5 focus:border-white focus:shadow-xl"
-        >
-          Lihat Detail
-        </button>
+          >
+            Lihat Detail
+          </button>
+        </NavLink>
       </div>
     </div>
   );
