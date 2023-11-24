@@ -28,6 +28,12 @@ export default {
         color6:{
           DEFAULT: '#E6F7FF'
         },
+        color7:{
+          DEFAULT: '#FAFAFA'
+        },
+        color8:{
+          DEFAULT: '#FFFFFF'
+        },
       },
       width:{
         '640':'48rem',
