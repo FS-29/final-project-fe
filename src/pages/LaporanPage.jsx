@@ -2,11 +2,53 @@ import { NavLink } from "react-router-dom";
 import PosterLaporan from "../component/laporan/PosterLaporan";
 import Datepicker from "react-tailwindcss-datepicker";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
+const API_URL = "https://www.emsifa.com/api-wilayah-indonesia/api/";
+const API_SEKOLAH_URL = "https://api-sekolah-indonesia.vercel.app/sekolah/";
+
+const provIdToSekolah = [
+  { id: "11", idSekolah: "060000" }, //aceh
+  { id: "12", idSekolah: "070000" }, //sumut
+  { id: "13", idSekolah: "080000" }, //sumbar
+  { id: "14", idSekolah: "090000" }, //riau
+  { id: "15", idSekolah: "100000" }, //jambi
+  { id: "16", idSekolah: "110000" }, //sumsel
+  { id: "17", idSekolah: "260000" }, //bengkulu
+  { id: "18", idSekolah: "120000" }, //lampung
+  { id: "19", idSekolah: "290000" }, //kep bangka belitung
+  { id: "21", idSekolah: "310000" }, //kep riau
+  { id: "31", idSekolah: "010000" }, //dkijakarta
+  { id: "32", idSekolah: "020000" }, //jawa barat
+  { id: "33", idSekolah: "030000" }, //jawa tengah
+  { id: "34", idSekolah: "040000" }, //di yogyakarta
+  { id: "35", idSekolah: "050000" }, //jawatimur
+  { id: "36", idSekolah: "280000" }, //banten
+  { id: "51", idSekolah: "220000" }, //bali
+  { id: "52", idSekolah: "230000" }, //NTB
+  { id: "53", idSekolah: "240000" }, //NTT
+  { id: "61", idSekolah: "130000" }, //kalbar
+  { id: "62", idSekolah: "140000" }, //kalteng
+  { id: "63", idSekolah: "150000" }, //kalsel
+  { id: "64", idSekolah: "160000" }, //kaltim
+  { id: "65", idSekolah: "340000" }, //kalut
+  { id: "71", idSekolah: "170000" }, //sulut
+  { id: "72", idSekolah: "180000" }, //sulteng
+  { id: "73", idSekolah: "190000" }, //sulsel
+  { id: "74", idSekolah: "200000" }, //sultenggara
+  { id: "75", idSekolah: "300000" }, //gorontalo
+  { id: "76", idSekolah: "330000" }, //sulbar
+  { id: "81", idSekolah: "210000" }, //maluku
+  { id: "82", idSekolah: "270000" }, //maluku utara
+  { id: "91", idSekolah: "320000" }, //papua barat
+  { id: "94", idSekolah: "250000" }, //papua
+];
 
 function LaporanPage() {
   const styleInput =
     "border-none rounded-lg ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-color3";
   const styleLabel = "block font-medium leading-6 text-gray-900";
+  const styleCheckBox = "rounded-md outline-none text-color3 border-2 border-slate-300 focus:ring-color3"
   const [value, setValue] = useState({
     startDate: null,
     endDate: null,
@@ -14,6 +56,12 @@ function LaporanPage() {
   const [laporanPribadi, setLaporanPribadi] = useState(false);
   const [checkLaporan, setCheckLaporan] = useState(false);
   const [btnState, setBtnState] = useState(false);
+  const [provinsi, setProvinsi] = useState([]);
+  const [provId, setProvId] = useState([]);
+  const [kabId, setKabId] = useState();
+  const [kabupaten, setKabaupaten] = useState([]);
+  const [kecamatan, setKecamatan] = useState([]);
+  const [sekolah, setSekolah] = useState([]);
   const [laporan, setLaporan] = useState({
     nama: "",
     noTlp: "",
@@ -42,6 +90,32 @@ function LaporanPage() {
     setValue(newValue);
   };
 
+  const handleInputOptions = (e) => {
+    if (e.target.name == "prov") {
+      const id = e.target.value;
+      const idSekolah = provIdToSekolah.find((data) => data.id == id).idSekolah;
+      setLaporan({
+        ...laporan,
+        prov: e.target[e.target.selectedIndex].innerText,
+        kabKota: "",
+        kec: "",
+      });
+      setProvId([id, idSekolah]);
+    } else if (e.target.name == "kabKota") {
+      setKabId(e.target.value);
+      setLaporan({
+        ...laporan,
+        kabKota: e.target[e.target.selectedIndex].innerText,
+        kec: "",
+      });
+    } else {
+      setLaporan({
+        ...laporan,
+        [e.target.name]: e.target[e.target.selectedIndex].innerText,
+      });
+    }
+  };
+
   useEffect(() => {
     if (laporanPribadi) {
       setLaporan({
@@ -64,24 +138,71 @@ function LaporanPage() {
         sekolah: "",
       });
     }
-  }, [laporanPribadi, checkLaporan]);
+  }, [laporanPribadi]);
 
   useEffect(() => {
-    if (laporan.nama != "" && laporan.noTlp != "") {
+    if (
+      laporan.nama != "" &&
+      laporan.noTlp != "" &&
+      laporan.prov != "" &&
+      laporan.kabKota != "" &&
+      laporan.kec != "" &&
+      laporan.jenjang != "" &&
+      laporan.sekolah != "" &&
+      laporan.tglKejadian != "" &&
+      laporan.tingkatan != ""
+    ) {
       if (checkLaporan) {
         setBtnState(true);
-        
       } else {
         setBtnState(false);
-        
       }
     } else {
       setBtnState(false);
-      
     }
   }, [checkLaporan, laporan]);
 
-  // console.log(laporan);
+  useEffect(() => {
+    getProv();
+  }, []);
+
+  useEffect(() => {
+    getKab(provId[0]);
+  }, [provId]);
+
+  useEffect(() => {
+    getKec(kabId);
+  }, [kabId]);
+
+  useEffect(()=>{
+    getSekolah(provId[1],laporan.jenjang) 
+  },[provId,laporan.jenjang])
+
+  async function getProv() {
+    const { data } = await axios(API_URL + "provinces.json");
+    setProvinsi(data);
+  }
+  async function getKab(id) {
+    if (id != null) {
+      const { data } = await axios(API_URL + "regencies/" + id + ".json");
+      setKabaupaten(data);
+    }
+  }
+  async function getKec(id) {
+    if (id != null) {
+      const { data } = await axios(API_URL + "districts/" + id + ".json");
+      setKecamatan(data);
+    }
+  }
+  async function getSekolah(id, selJenjang) {
+    if (id != null && selJenjang != "") {
+      const { data } = await axios(
+        API_SEKOLAH_URL + selJenjang + "?provinsi=" + id + "&page=1&perPage=5000"
+      );
+      setSekolah(data.dataSekolah)
+    }
+  }
+  console.log(laporan);
   return (
     <div className="flex flex-col font-jakarta">
       <div className="flex flex-col items-center gap-5 pt-28 px-5">
@@ -123,7 +244,7 @@ function LaporanPage() {
                     type="checkbox"
                     name="check-pelapor"
                     id="check-pelapor"
-                    className=""
+                    className={styleCheckBox}
                     onChange={(e) => setLaporanPribadi(e.target.checked)}
                   />
                   <label htmlFor="check-pelapor" className={styleLabel}>
@@ -144,12 +265,12 @@ function LaporanPage() {
                     +62
                   </span>
                   <input
-                    type="text"
+                    type="number"
                     name="noTlp"
                     id="noTlp"
                     autoComplete="noTlp"
                     value={laporan.noTlp}
-                    className="block outline-none border-0 flex-1 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0"
+                    className="[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none block outline-none border-0 flex-1 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0"
                     onChange={handleInput}
                   />
                 </div>
@@ -169,10 +290,14 @@ function LaporanPage() {
                       name="prov"
                       autoComplete="prov-name"
                       className={`block w-full ${styleInput}`}
-                      onChange={handleInput}
+                      onChange={handleInputOptions}
                     >
                       <option>Provinsi</option>
-                      <option>test</option>
+                      {provinsi.map((prov, i) => (
+                        <option key={i} value={prov.id}>
+                          {prov.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <div className="grid">
@@ -181,10 +306,14 @@ function LaporanPage() {
                       name="kabKota"
                       autoComplete="kabKota-name"
                       className={`block w-full ${styleInput}`}
-                      onChange={handleInput}
+                      onChange={handleInputOptions}
                     >
                       <option>Kabupaten/Kota</option>
-                      <option>test</option>
+                      {kabupaten.map((kab, i) => (
+                        <option key={i} value={kab.id}>
+                          {kab.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -200,10 +329,14 @@ function LaporanPage() {
                     name="kec"
                     autoComplete="kec-name"
                     className={`block w-full ${styleInput}`}
-                    onChange={handleInput}
+                    onChange={handleInputOptions}
                   >
                     <option>Kecamatan</option>
-                    <option>test</option>
+                    {kecamatan.map((kec, i) => (
+                      <option key={i} value={kec.id}>
+                        {kec.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -236,7 +369,11 @@ function LaporanPage() {
                     onChange={handleInput}
                   >
                     <option>Nama Sekolah</option>
-                    <option>test</option>
+                    {sekolah.map((sekolah, i) => (
+                      <option key={i} value={sekolah.npsn}>
+                        {sekolah.sekolah}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -265,9 +402,11 @@ function LaporanPage() {
                       className={`block w-full ${styleInput}`}
                       onChange={handleInput}
                     >
+                      <option value={""}>Tingkatan</option>
                       <option>Ringan</option>
-                      <option>Berat</option>
                       <option>Sedang</option>
+                      <option>Berat</option>
+                      
                     </select>
                   </div>
                 </div>
@@ -277,8 +416,8 @@ function LaporanPage() {
                   Deskripsi
                 </label>
                 <textarea
-                  id="Deskripsi"
-                  name="Deskripsi"
+                  id="deskripsi"
+                  name="deskripsi"
                   rows={3}
                   className={`block w-full ${styleInput}`}
                   defaultValue={""}
@@ -291,7 +430,7 @@ function LaporanPage() {
                     type="checkbox"
                     name="check-pernyataan"
                     id="check-pernyataan"
-                    className=""
+                    className={styleCheckBox}
                     onChange={(e) => setCheckLaporan(e.target.checked)}
                   />
                   <label htmlFor="check-pernyataan" className={styleLabel}>
