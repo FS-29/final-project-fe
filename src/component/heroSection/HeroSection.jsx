@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 function HeroSection() {
   return (
     <div className="flex justify-center py-32">
@@ -10,12 +12,14 @@ function HeroSection() {
             Selamat Datang di layanan Bimbingan Konseling{" "}
           </h6>
         </div>
-        <button
-          className="py-2 px-4 rounded-2xl border-solid border-white border-4 shadow-xl bg-color5 text-xl text-white font-jakarta font-bold
+        <NavLink to="/laporan">
+          <button
+            className="py-2 px-4 rounded-2xl border-solid border-white border-4 shadow-xl bg-color5 text-xl text-white font-jakarta font-bold
                     hover:bg-color4 active:bg-slate-500 active:border-slate-200 active:shadow-none focus:bg-color5 focus:border-white focus:shadow-xl"
-        >
-          Kirim Aduan
-        </button>
+          >
+            Kirim Aduan
+          </button>
+        </NavLink>
       </div>
     </div>
   );

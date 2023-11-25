@@ -34,16 +34,17 @@ function Header() {
         isTop ? "top-0 relative " : scrollUp ? "top-0 fixed" : "-top-full fixed"
       }  transition-all duration-500 ease-in-out z-50`}
     >
+      {/* className={({ isActive }) => isActive && ""} */}
       <nav className="flex z-50 relative items-center bg-white shadow-lg justify-between px-24 py-3">
         <div className="flex items-center gap-10">
-          <NavLink to="/edukasi" className={({ isActive }) => isActive && ""}>
+          <NavLink to="/edukasi" >
             <Subcomp key={1} text={"Edukasi"}></Subcomp>
           </NavLink>
-          <NavLink to="/cerita" className={({ isActive }) => isActive && ""}>
+          <NavLink to="/cerita" >
             <Subcomp key={2} text={"Cerita Kami"}></Subcomp>
           </NavLink>
         </div>
-        <NavLink to="/" className={({ isActive }) => isActive && ""}>
+        <NavLink to="/" >
           <img
             src={headerLogo}
             className="w-16 hover:scale-110 transition-all duration-100"
@@ -51,10 +52,10 @@ function Header() {
           />
         </NavLink>
         <div className="flex items-center gap-10">
-          <NavLink to="/event" className={({ isActive }) => isActive && ""}>
+          <NavLink to="/event" >
             <Subcomp key={3} text={"Event"}></Subcomp>
           </NavLink>
-          <NavLink to="/berita" className={({ isActive }) => isActive && ""}>
+          <NavLink to="/berita" >
             <Subcomp key={4} text={"Berita"}></Subcomp>
           </NavLink>
 
@@ -66,7 +67,7 @@ function Header() {
               onClick={() => setFloating(!floating)}
             />
           ) : (
-            <NavLink to="/login" className={({ isActive }) => isActive && ""}>
+            <NavLink to="/login" >
               <div className="flex items-center gap-4 hover:scale-110 transition-all duration-100">
                 <Subcomp key={5} text={"Masuk"}></Subcomp>
                 <LoginLogo styleSVG={"fill-black"}></LoginLogo>
