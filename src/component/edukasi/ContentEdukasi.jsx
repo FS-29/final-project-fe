@@ -24,7 +24,7 @@ function ContentEdukasi({ idContent }) {
       break;
 
     case 4:
-      return <Dampak title={styleTitle} para={stylePargf}></Dampak>;
+      return <Dampak title={styleTitle} para={stylePargf} list={styleList}></Dampak>;
       break;
 
     case 5:
@@ -32,11 +32,11 @@ function ContentEdukasi({ idContent }) {
       break;
 
     case 6:
-      return <Pencegahan title={styleTitle} para={stylePargf}></Pencegahan>;
+      return <Pencegahan title={styleTitle} para={stylePargf} list={styleList}></Pencegahan>;
       break;
 
     case 7:
-      return <OrangTua title={styleTitle} para={stylePargf}></OrangTua>;
+      return <OrangTua title={styleTitle} para={stylePargf} list={styleList}></OrangTua>;
       break;
 
     default:
