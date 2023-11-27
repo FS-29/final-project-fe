@@ -1,4 +1,4 @@
-import { Route,Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -14,17 +14,27 @@ import LaporanPage from "./pages/LaporanPage";
 function App() {
   return (
     <>
+      <Routes>
+        <Route path="*" element={<HeaderAndRoutes />}></Route>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </>
+  );
+}
+
+function HeaderAndRoutes() {
+  return (
+    <>
       <Header></Header>
       <Routes>
-        <Route path="/" element={<HomePage/>}/>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/register" element={<RegisterPage/>}/>
-        <Route path="/berita" element={<BeritaPage/>}/>
-        <Route path="/cerita" element={<CeritaPage/>}/>
-        <Route path="/edukasi" element={<EdukasiPage/>}/>
-        <Route path="/event" element={<EventPage/>}/>
-        <Route path="/dashboard" element={<DashboardPage/>}/>
-        <Route path="/laporan" element={<LaporanPage/>}/>
+        <Route index element={<HomePage />} />
+        <Route path="/berita" element={<BeritaPage />} />
+        <Route path="/cerita" element={<CeritaPage />} />
+        <Route path="/edukasi" element={<EdukasiPage />} />
+        <Route path="/event" element={<EventPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/laporan" element={<LaporanPage />} />
       </Routes>
     </>
   );
