@@ -12,7 +12,7 @@ function Header() {
   const [prevSPos, setPrevSPos] = useState(0);
   const [scrollUp, setScrollUp] = useState(false);
   const [floating, setFloating] = useState(false);
-  const isLogin = SVGComponentTransferFunctionElement;
+  const isLogin = false;
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
