@@ -26,7 +26,6 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevSPos, isTop]);
-
   return (
     <header
       id="header"

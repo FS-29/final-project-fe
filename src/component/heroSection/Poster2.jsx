@@ -5,7 +5,7 @@ import frame4 from "../../assets/img/frame4.png"
 import Poster2Comp from "./Poster2Comp";
 function Poster2() {
   return (
-    <div className="flex  flex-col items-center py-32 bg-color6">
+    <div className="flex  flex-col items-center py-32 bg-color6 overflow-hidden">
       <div className="flex z-20 gap-44 max-xl:gap-10 flex-row">
         <Poster2Comp 
             img={frame1} 

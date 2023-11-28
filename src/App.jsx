@@ -10,6 +10,7 @@ import EventPage from "./pages/EventPage";
 import DashboardPage from "./pages/DashboardPage";
 import Header from "./component/header/header";
 import LaporanPage from "./pages/LaporanPage";
+import Footer from './component/footer/footer';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function HeaderAndRoutes() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/laporan" element={<LaporanPage />} />
       </Routes>
+      <Footer></Footer>
     </>
   );
 }
