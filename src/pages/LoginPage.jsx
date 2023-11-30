@@ -1,15 +1,21 @@
+import {useDispatch , useSelector} from "react-redux";
 import poster from "../assets/svg/authPoster.svg";
 import { useEffect, useState } from "react";
 import ArrowLeft from "../assets/svg/ArrowLeft";
 import Visibility from "../assets/svg/Visibility";
 import VisibilityOff from "../assets/svg/VisibilityOff";
+import { login } from "../redux/reducers/auth-reducers";
+
 
 function LoginPage() {
-    const styleInput = "focus:ring-color8 ring-0 border-2 border-gray-300 focus-within:border-color3 focus:border-color3 active:border-color3";
+  // const {isLogin} = useSelector((state)=> state.authUser)
+  const dispatch = useDispatch()
+  const styleInput = "focus:ring-color8 ring-0 border-2 border-gray-300 focus-within:border-color3 focus:border-color3 active:border-color3";
   const styleLabel = "block font-medium leading-6 text-gray-900";
+  const [fullInput, setFullInput] = useState(false)
   const [formLogin, setFormLogin] = useState({
     email: "",
-    password: "",
+    pass: "",
   });
   const [showPass, setShowPass] = useState(false)
   const handleInput = (event) => {
@@ -18,8 +24,18 @@ function LoginPage() {
       [event.target.name]: event.target.value,
     });
   };
-
-  console.log(formLogin);
+  useEffect(() => {
+    if (formLogin.email!="" && formLogin.pass !="" ) {
+      setFullInput(true)
+    }
+  }, [formLogin]);
+  const handlerLogin = () =>{
+    if (fullInput) {
+      dispatch(login(formLogin))
+      
+    }
+  }
+  
   return (
     <>
       <div className="grid grid-cols-2 gap-4 bg-color8 p-4 min-h-screen font-jakarta">
@@ -60,8 +76,8 @@ function LoginPage() {
                   </label>
                   <div className="flex">
                     <input
-                      id="password"
-                      name="password"
+                      id="pass"
+                      name="pass"
                       type={showPass?"text":"password"}
                       autoComplete="current-password"
                       required
@@ -82,6 +98,7 @@ function LoginPage() {
               <button
                 className="py-2 px-8 rounded-xl shadow-xl bg-color5 text-white font-jakarta font-bold
                     hover:bg-color4 active:bg-slate-500  active:shadow-none focus:bg-color5  focus:shadow-xl disabled:bg-slate-500"
+                onClick={handlerLogin}        
               >
                 Login
               </button>

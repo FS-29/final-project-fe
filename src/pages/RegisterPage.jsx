@@ -1,10 +1,13 @@
 import poster from "../assets/svg/authPoster.svg";
 import { useEffect, useState } from "react";
+import {useDispatch , useSelector} from "react-redux";
 import ArrowLeft from "../assets/svg/ArrowLeft";
 import Visibility from "../assets/svg/Visibility";
 import VisibilityOff from "../assets/svg/VisibilityOff";
+import { register } from "../redux/reducers/auth-reducers";
 
 function RegisterPage() {
+  const dispatch = useDispatch()
   const styleInput = "focus:ring-color8 ring-0 border-2 border-gray-300 focus-within:border-color3 focus:border-color3 active:border-color3";
   const styleLabel = "block font-medium leading-6 text-gray-900";
   const [role, setRole] = useState();
@@ -12,7 +15,7 @@ function RegisterPage() {
     nama: "",
     username: "",
     email: "",
-    password: "",
+    pass: "",
   });
   const [showPass, setShowPass] = useState(false);
   const handleInput = (event) => {
@@ -21,8 +24,13 @@ function RegisterPage() {
       [event.target.name]: event.target.value,
     });
   };
+  const handleRegister = () => {
+    if (formLogin.nama!=""&&formLogin.username!=""&&formLogin.email!=""&&formLogin.pass!=""&&role!=null) {
+      dispatch(register(formLogin,role))
+    }
+  }
 
-  console.log(role);
+  // console.log(role);
   return (
     <>
       <div className="grid grid-cols-2 gap-4 bg-color8 p-4 min-h-screen font-jakarta">
@@ -148,13 +156,13 @@ function RegisterPage() {
                   />
                 </div>
                 <div className="flex flex-col gap-2">
-                  <label htmlFor="password" className={styleLabel}>
+                  <label htmlFor="pass" className={styleLabel}>
                     Password
                   </label>
                   <div className="flex">
                     <input
-                      id="password"
-                      name="password"
+                      id="pass"
+                      name="pass"
                       type={showPass?"text":"password"}
                       autoComplete="current-password"
                       required
@@ -171,11 +179,12 @@ function RegisterPage() {
                   </div>
                 </div>
               </div>
-              <button
+              <button 
+              onClick={handleRegister}
                 className="py-2 px-8 rounded-xl shadow-xl bg-color5 text-white font-jakarta font-bold
                     hover:bg-color4 active:bg-slate-500  active:shadow-none focus:bg-color5  focus:shadow-xl disabled:bg-slate-500"
               >
-                Login
+                Register
               </button>
             </div>
           </div>
