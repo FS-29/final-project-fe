@@ -8,23 +8,19 @@ function Filter() {
         },
         {
           id: 2,
-          name: "Disabilitas",
+          name: "Kampanye",
         },
         {
           id: 3,
-          name: "Cyber",
+          name: "Seminar",
         },
         {
           id: 4,
-          name: "Rasial",
+          name: "Baksos",
         },
         {
           id: 5,
-          name: "Fisik",
-        },
-        {
-          id: 6,
-          name: "Verbal",
+          name: "Volunteer",
         },
       ];
     
