@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import CeritaCard from "../component/ceritaComp/CeritaCard";
 import Search from "../component/ceritaComp/Search";
 import APICerita from "../Sevices/APICerita";
-import Footer from "../component/footer/footer";
 import cerita1 from "../assets/svg/cerita1.svg";
 import cerita2 from "../assets/svg/cerita2.svg";
 
@@ -58,7 +57,6 @@ function CeritaPage() {
       <div>
         <Search></Search>
         {post.length > 0 ? <CeritaCard posts={post} /> : null}
-        <Footer></Footer>
       </div>
     </>
   );

@@ -23,7 +23,7 @@ function authReducers(state = initialValue, action) {
       return state;
   }
 }
-export function isLogin() {
+export function isLoginReducer() {
   return {
     type: "ISLOGIN",
   };
@@ -41,7 +41,7 @@ export const login = (dataUser) => async (dispatch) => {
   if (data.message == "berhasil login") {
     console.log('bisamasuk');
     localStorage.setItem("token", data.token);
-    dispatch(isLogin());
+    dispatch(isLoginReducer());
   }
 };
 

@@ -12,9 +12,20 @@ import Header from "./component/header/header";
 import LaporanPage from "./pages/LaporanPage";
 import Footer from "./component/footer/footer";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { isLoginReducer } from "./redux/reducers/auth-reducers";
+
+const SECRET_KEY = import.meta.env.VITE_JWT_KEY;
 
 function App() {
   const { isLogin } = useSelector((state) => state.authUser);
+  const dispatch =useDispatch()
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if (token) {
+      dispatch(isLoginReducer())
+    }
+  },[])
   return (
     <>
       <Routes>
