@@ -15,8 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { isLoginReducer } from "./redux/reducers/auth-reducers";
 
-const SECRET_KEY = import.meta.env.VITE_JWT_KEY;
-
 function App() {
   const { isLogin } = useSelector((state) => state.authUser);
   const dispatch =useDispatch()
