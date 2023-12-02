@@ -13,6 +13,8 @@ function HomePage() {
 
   useEffect(() => {
     getPost();
+    dispatch(getProfil())
+  
   }, []);
 
   const getPost = () => {
