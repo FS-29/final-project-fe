@@ -1,9 +1,17 @@
 import BtnProfil from "./BtnProfil";
 import PersonLogo from "../../assets/svg/PersonLogo";
 import OutLogo from "../../assets/svg/OutLogo";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { isLogout } from "../../redux/reducers/auth-reducers";
 
 function FloatingProfil({ img }) {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  function handleLogout() {
+    dispatch(isLogout())
+    navigate("/login")
+  }
   return (
     <div className="flex gap-6 flex-col justify-start items-center w-56 pt-10 pb-5 rounded-2xl border-solid border-4  border-white bg-color3  shadow-2xl">
       <div className="flex flex-col items-center gap-2">
@@ -25,11 +33,9 @@ function FloatingProfil({ img }) {
               ></PersonLogo>
             }
             text={"Dashboard"}
-            onClick={() => console.Console.log("bisa")}
           ></BtnProfil>
         </NavLink>
-        <NavLink to="/login">
-          {" "}
+        <button onClick={handleLogout}>
           <BtnProfil
             icons={
               <OutLogo
@@ -40,7 +46,7 @@ function FloatingProfil({ img }) {
             }
             text={"Keluar"}
           ></BtnProfil>
-        </NavLink>
+        </button>
       </div>
     </div>
   );
