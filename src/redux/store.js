@@ -1,9 +1,11 @@
 import {configureStore} from "@reduxjs/toolkit"
 import authReducers from "./reducers/auth-reducers"
+import laporanReducers from "./reducers/laporan-reducers"
 
 const store = configureStore({
     reducer:{
-        authUser: authReducers
+        authUser: authReducers,
+        laporan: laporanReducers
     }
 })
 

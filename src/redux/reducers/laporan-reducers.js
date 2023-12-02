@@ -2,64 +2,37 @@ import axios from "axios";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 const initialValue = {
-  isLogin: false,
-  isLoading: false,
+    nama: "",
+    noTlp: "",
+    prov: "",
+    kabKota: "",
+    kec: "",
+    jenjang: "",
+    sekolah: "",
+    tglKejadian: "",
+    tingkatan: "",
+    deskripsi: "",
+    isLoading: ""
 };
 
-function authReducers(state = initialValue, action) {
+function laporanReducers(state = initialValue, action) {
   switch (action.type) {
-    case "ISLOGIN":
-      return {
-        ...state,
-        isLogin: true,
-        isLoading: false,
-      };
-
-    case "ISLOGOUT":
-      localStorage.removeItem("token");
-      return {
-        ...state,
-        isLogin: false,
-        isLoading: false,
-      };
     case "ISLOADING":
       return {
         ...state,
         isLoading: true,
       };
-    case "NOTLOADING":
-        return {
-            ...state,
-            isLoading:false
-        }
     default:
       return state;
   }
 }
-export function isLoginReducer() {
-  return {
-    type: "ISLOGIN",
-  };
-}
-export function isLogout() {
-  return {
-    type: "ISLOGOUT",
-  };
-}
-export function isLoading() {
+function isLoading() {
   return {
     type: "ISLOADING",
   };
 }
-export function notLoading() {
-    return {
-      type: "NOTLOADING",
-    };
-  }
 
-export const login = (dataUser) => async (dispatch,getState) => {
-    const {authUser} = getState()
-    console.log(authUser);
+export const login = (dataUser) => async (dispatch) => {
   dispatch(isLoading());
   const { data } = await axios.post(API_KEY + "auth/login", dataUser, {
     headers: { "Access-Control-Allow-Origin": true },
@@ -82,4 +55,4 @@ export const register = (dataUser, role) => async (dispatch) => {
   }
 };
 
-export default authReducers;
+export default laporanReducers;

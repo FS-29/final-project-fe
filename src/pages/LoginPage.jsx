@@ -5,10 +5,11 @@ import ArrowLeft from "../assets/svg/ArrowLeft";
 import Visibility from "../assets/svg/Visibility";
 import VisibilityOff from "../assets/svg/VisibilityOff";
 import { login } from "../redux/reducers/auth-reducers";
+import LoadingComp from "../component/loadingComp/LoadingComp";
 
 
 function LoginPage() {
-  // const {isLogin} = useSelector((state)=> state.authUser)
+  // const {isLoading} = useSelector((state)=> state.authUser)
   const dispatch = useDispatch()
   const styleInput = "focus:ring-color8 ring-0 border-2 border-gray-300 focus-within:border-color3 focus:border-color3 active:border-color3";
   const styleLabel = "block font-medium leading-6 text-gray-900";
@@ -110,6 +111,7 @@ function LoginPage() {
           </div>
         </div>
       </div>
+      <LoadingComp ></LoadingComp>
     </>
   );
 }

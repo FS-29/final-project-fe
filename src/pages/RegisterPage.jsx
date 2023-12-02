@@ -5,6 +5,7 @@ import ArrowLeft from "../assets/svg/ArrowLeft";
 import Visibility from "../assets/svg/Visibility";
 import VisibilityOff from "../assets/svg/VisibilityOff";
 import { register } from "../redux/reducers/auth-reducers";
+import LoadingComp from "../component/loadingComp/LoadingComp";
 
 function RegisterPage() {
   const dispatch = useDispatch()
@@ -196,6 +197,7 @@ function RegisterPage() {
           </div>
         </div>
       </div>
+      <LoadingComp/>
     </>
   );
 }
