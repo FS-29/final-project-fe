@@ -5,7 +5,7 @@ import HeroSubSection from "../component/heroSection/HeroSubSection";
 import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
 import API from "../Sevices/API";
-import CeritaComp from "../component/ceritaComp/ceritaComp";
+import CeritaComp from "../component/ceritaComp/CeritaComp";
 import BeritaComp from "../component/beritaComp/BeritaComp";
 
 function HomePage() {
