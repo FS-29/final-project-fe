@@ -8,16 +8,11 @@ import API from "../Sevices/API";
 import CeritaComp from "../component/ceritaComp/CeritaComp";
 import BeritaComp from "../component/beritaComp/BeritaComp";
 
-import {useDispatch } from "react-redux";
-import { getProfil } from "../redux/reducers/profil-reducer";
-
 function HomePage() {
-  const dispatch = useDispatch()
   const [post, setPost] = useState([]);
 
   useEffect(() => {
     getPost();
-    dispatch(getProfil())
   }, []);
 
   const getPost = () => {
