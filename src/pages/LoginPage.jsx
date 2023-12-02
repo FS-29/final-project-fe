@@ -34,6 +34,7 @@ function LoginPage() {
     if (fullInput) {
       dispatch(login(formLogin))
       
+      
     }
   }
   
