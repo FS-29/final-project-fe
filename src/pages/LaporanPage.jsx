@@ -3,9 +3,13 @@ import PosterLaporan from "../component/laporan/PosterLaporan";
 import Datepicker from "react-tailwindcss-datepicker";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { isLoading, notLoading } from "../redux/reducers/auth-reducers";
+import {useDispatch , useSelector} from "react-redux";
+import LoadingComp from "../component/loadingComp/LoadingComp";
 
-const API_URL = "https://www.emsifa.com/api-wilayah-indonesia/api/";
-const API_SEKOLAH_URL = "https://api-sekolah-indonesia.vercel.app/sekolah/";
+const API_KEY = import.meta.env.VITE_API_KEY;
+const API_WILAYAH_URL = import.meta.env.VITE_API_WILAYAH_KEY;
+const API_SEKOLAH_URL = import.meta.env.VITE_API_SEKOLAH_KEY;
 
 const provIdToSekolah = [
   { id: "11", idSekolah: "060000" }, //aceh
@@ -48,11 +52,15 @@ function LaporanPage() {
   const styleInput =
     "border-none rounded-lg ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-color3";
   const styleLabel = "block font-medium leading-6 text-gray-900";
-  const styleCheckBox = "rounded-md outline-none text-color3 border-2 border-slate-300 focus:ring-color3"
+  const styleCheckBox =
+    "rounded-md outline-none text-color3 border-2 border-slate-300 focus:ring-color3";
+  const [noTeleponData, setTeleponData] = useState("");
+  const [sekolahData, setSekolahData] = useState({});
   const [value, setValue] = useState({
     startDate: null,
     endDate: null,
   });
+  const dispatch = useDispatch()
   const [laporanPribadi, setLaporanPribadi] = useState(false);
   const [checkLaporan, setCheckLaporan] = useState(false);
   const [btnState, setBtnState] = useState(false);
@@ -73,6 +81,7 @@ function LaporanPage() {
     tglKejadian: "",
     tingkatan: "",
     deskripsi: "",
+    foto: ""
   });
 
   const handleInput = (event) => {
@@ -116,16 +125,19 @@ function LaporanPage() {
     }
   };
 
+  useEffect(()=>{
+    getDataLaporan();
+    getDataSekolah();
+  },[])
   useEffect(() => {
     if (laporanPribadi) {
       setLaporan({
         ...laporan,
-        noTlp: "82245678290",
-        prov: "test effect",
-        kabKota: "test effect",
-        kec: "test effect",
-        jenjang: "test effect",
-        sekolah: "test effect",
+        noTlp: noTeleponData,
+        prov: sekolahData.prov,
+        kabKota: sekolahData.kab_kota,
+        kec: sekolahData.kec,
+        sekolah: sekolahData.nama,
       });
     } else {
       setLaporan({
@@ -147,7 +159,6 @@ function LaporanPage() {
       laporan.prov != "" &&
       laporan.kabKota != "" &&
       laporan.kec != "" &&
-      laporan.jenjang != "" &&
       laporan.sekolah != "" &&
       laporan.tglKejadian != "" &&
       laporan.tingkatan != ""
@@ -174,32 +185,78 @@ function LaporanPage() {
     getKec(kabId);
   }, [kabId]);
 
-  useEffect(()=>{
-    getSekolah(provId[1],laporan.jenjang) 
-  },[provId,laporan.jenjang])
+  useEffect(() => {
+    getSekolah(provId[1], laporan.jenjang);
+  }, [provId, laporan.jenjang]);
+
+  async function getDataLaporan() {
+    const tokenLocal = localStorage.getItem("token");
+    const { data } = await axios(API_KEY + "profil", {
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        Authorization: "Bearer " + tokenLocal,
+      },
+    });
+    setTeleponData(data.data.no_tlp);
+  }
+
+  async function getDataSekolah() {
+    const tokenLocal = localStorage.getItem("token");
+    const { data } = await axios(API_KEY + "pelapor/sekolah", {
+      headers: {
+        "Access-Control-Allow-Origin": true,
+        Authorization: "Bearer " + tokenLocal,
+      },
+    });
+    setSekolahData(data.data);
+  }
+
+  async function postingLaporan(e) {
+    dispatch(isLoading())
+    e.preventDefault()
+    const tokenLocal = localStorage.getItem("token");
+    await axios.post(
+      API_KEY + "laporan",laporan,
+      {
+        headers: {
+          "Access-Control-Allow-Origin": true,
+          Authorization: "Bearer " + tokenLocal,
+        },
+      }
+    );
+    dispatch(notLoading())
+  }
 
   async function getProv() {
-    const { data } = await axios(API_URL + "provinces.json");
+    const { data } = await axios(API_WILAYAH_URL + "provinces.json");
     setProvinsi(data);
   }
   async function getKab(id) {
     if (id != null) {
-      const { data } = await axios(API_URL + "regencies/" + id + ".json");
+      const { data } = await axios(
+        API_WILAYAH_URL + "regencies/" + id + ".json"
+      );
       setKabaupaten(data);
     }
   }
   async function getKec(id) {
     if (id != null) {
-      const { data } = await axios(API_URL + "districts/" + id + ".json");
+      const { data } = await axios(
+        API_WILAYAH_URL + "districts/" + id + ".json"
+      );
       setKecamatan(data);
     }
   }
   async function getSekolah(id, selJenjang) {
     if (id != null && selJenjang != "") {
       const { data } = await axios(
-        API_SEKOLAH_URL + selJenjang + "?provinsi=" + id + "&page=1&perPage=5000"
+        API_SEKOLAH_URL +
+          selJenjang +
+          "?provinsi=" +
+          id +
+          "&page=1&perPage=5000"
       );
-      setSekolah(data.dataSekolah)
+      setSekolah(data.dataSekolah);
     }
   }
   console.log(laporan);
@@ -406,7 +463,6 @@ function LaporanPage() {
                       <option>Ringan</option>
                       <option>Sedang</option>
                       <option>Berat</option>
-                      
                     </select>
                   </div>
                 </div>
@@ -452,6 +508,7 @@ function LaporanPage() {
                     className="py-2 px-8 rounded-xl border-solid border-white border-4 shadow-xl bg-color5 text-white font-jakarta font-bold
                     hover:bg-color4 active:bg-slate-500 active:border-slate-200 active:shadow-none focus:bg-color5 focus:border-white focus:shadow-xl disabled:bg-slate-500"
                     disabled={!btnState}
+                    onClick={(e)=>postingLaporan(e)}
                   >
                     Kirim
                   </button>
@@ -461,6 +518,7 @@ function LaporanPage() {
           </form>
         </div>
       </div>
+      <LoadingComp/>
     </div>
   );
 }

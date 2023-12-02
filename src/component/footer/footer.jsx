@@ -1,19 +1,20 @@
-import React from 'react';
-import footerLogo from "../../assets/img/Logo.png";
+import React, { useEffect, useState } from 'react';
+import footerLogo from "../../assets/svg/logo-white.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTwitter, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
+
   return (
-    <footer className="bg-color5 py-4">
+    <footer className="relative bg-color5 py-8 z-50">
       <div className="flex justify-between items-center mx-auto px-4 md:px-8 max-w-7xl">
 
         {/* Logo perusahaan dan teks */}
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center gap-2">
             <img
               src={footerLogo}
-              className="w-16 hover:scale-110 transition-all duration-100"
+              className="w-12 hover:scale-110 transition-all duration-100"
               alt="Safe Space Squad"
             />
             <span className="font-jakarta font-bold ml-2 text-white">Safe Space Squad</span>

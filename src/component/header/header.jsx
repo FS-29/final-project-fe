@@ -6,13 +6,14 @@ import { useState } from "react";
 import { useEffect } from "react";
 import FloatingProfil from "./FloatingProfil";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 function Header() {
+  const { isLogin } = useSelector((state) => state.authUser);
   const [isTop, setIsTop] = useState(true);
   const [prevSPos, setPrevSPos] = useState(0);
   const [scrollUp, setScrollUp] = useState(false);
   const [floating, setFloating] = useState(false);
-  const isLogin = false;
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
@@ -26,7 +27,6 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevSPos, isTop]);
-
   return (
     <header
       id="header"
