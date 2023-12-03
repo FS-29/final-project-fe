@@ -1,5 +1,5 @@
 import headerLogo from "../../assets/img/Logo.png";
-import dummys from "../../assets/img/dummys.jpg";
+import dummys from "../../assets/svg/profilPolos.svg";
 import Subcomp from "./Subcomp";
 import LoginLogo from "../../assets/svg/LoginLogo";
 import { useState } from "react";
