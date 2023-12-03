@@ -6,6 +6,7 @@ import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
 import API from "../Sevices/API";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import CeritaComp from "../component/ceritaComp/ceritaComp";
 import BeritaComp from "../component/beritaComp/BeritaComp";
 import EventComp from "../component/eventComp/EventComp";
@@ -29,6 +30,21 @@ function HomePage() {
     dispatch(getProfil())
   
 >>>>>>> dev
+=======
+import CeritaComp from "../component/ceritaComp/CeritaComp";
+import BeritaComp from "../component/beritaComp/BeritaComp";
+import {useDispatch } from "react-redux";
+import { getProfil } from "../redux/reducers/profil-reducer";
+
+function HomePage() {
+  const dispatch = useDispatch()
+  const [post, setPost] = useState([]);
+
+  useEffect(() => {
+    getPost();
+    dispatch(getProfil())
+  
+>>>>>>> dev
   }, []);
 
   const getPost = () => {
@@ -46,7 +62,10 @@ function HomePage() {
   return (
     <>
 <<<<<<< HEAD
+<<<<<<< HEAD
       {/* <Header></Header> */}
+=======
+>>>>>>> dev
 =======
 >>>>>>> dev
       <FloatingBtn></FloatingBtn>
@@ -57,7 +76,11 @@ function HomePage() {
       {post.length > 0 ? <CeritaComp posts={post} /> : null}
       {post.length > 0 ? <BeritaComp posts={post} /> : null}
 <<<<<<< HEAD
+<<<<<<< HEAD
       {post.length > 0 ? <EventComp posts={post} /> : null}
+=======
+      
+>>>>>>> dev
 =======
       
 >>>>>>> dev
