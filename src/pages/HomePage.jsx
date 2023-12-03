@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from "react";
 import FloatingBtn from "../component/floatingbtn/FloatingBtn";
-// import Header from "../component/header/header";
 import HeroSection from "../component/heroSection/HeroSection";
 import HeroSubSection from "../component/heroSection/HeroSubSection";
 import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
 import API from "../Sevices/API";
+<<<<<<< HEAD
 import CeritaComp from "../component/ceritaComp/ceritaComp";
 import BeritaComp from "../component/beritaComp/BeritaComp";
 import EventComp from "../component/eventComp/EventComp";
 
 function HomePage() {
+=======
+import CeritaComp from "../component/ceritaComp/CeritaComp";
+import BeritaComp from "../component/beritaComp/BeritaComp";
+import {useDispatch } from "react-redux";
+import { getProfil } from "../redux/reducers/profil-reducer";
+
+function HomePage() {
+  const dispatch = useDispatch()
+>>>>>>> dev
   const [post, setPost] = useState([]);
 
   useEffect(() => {
     getPost();
+<<<<<<< HEAD
+=======
+    dispatch(getProfil())
+  
+>>>>>>> dev
   }, []);
 
   const getPost = () => {
@@ -31,7 +45,10 @@ function HomePage() {
 
   return (
     <>
+<<<<<<< HEAD
       {/* <Header></Header> */}
+=======
+>>>>>>> dev
       <FloatingBtn></FloatingBtn>
       <HeroSection></HeroSection>
       <Poster></Poster>
@@ -39,7 +56,11 @@ function HomePage() {
       <Poster2></Poster2>
       {post.length > 0 ? <CeritaComp posts={post} /> : null}
       {post.length > 0 ? <BeritaComp posts={post} /> : null}
+<<<<<<< HEAD
       {post.length > 0 ? <EventComp posts={post} /> : null}
+=======
+      
+>>>>>>> dev
     </>
   );
 }
