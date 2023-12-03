@@ -4,48 +4,18 @@ import HeroSection from "../component/heroSection/HeroSection";
 import HeroSubSection from "../component/heroSection/HeroSubSection";
 import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
-import API from "../Sevices/API";
-<<<<<<< HEAD
-<<<<<<< HEAD
-import CeritaComp from "../component/ceritaComp/ceritaComp";
-import BeritaComp from "../component/beritaComp/BeritaComp";
-import EventComp from "../component/eventComp/EventComp";
+import API from '../Sevices/API';
+import CeritaComp from '../component/ceritaComp/ceritaComp';
+import BeritaComp from '../component/beritaComp/BeritaComp';
+
 
 function HomePage() {
-=======
-import CeritaComp from "../component/ceritaComp/CeritaComp";
-import BeritaComp from "../component/beritaComp/BeritaComp";
-import {useDispatch } from "react-redux";
-import { getProfil } from "../redux/reducers/profil-reducer";
 
-function HomePage() {
-  const dispatch = useDispatch()
->>>>>>> dev
-  const [post, setPost] = useState([]);
+  const [post, setPost] = useState([])
 
-  useEffect(() => {
+  useEffect(()=>{
     getPost();
-<<<<<<< HEAD
-=======
-    dispatch(getProfil())
-  
->>>>>>> dev
-=======
-import CeritaComp from "../component/ceritaComp/CeritaComp";
-import BeritaComp from "../component/beritaComp/BeritaComp";
-import {useDispatch } from "react-redux";
-import { getProfil } from "../redux/reducers/profil-reducer";
-
-function HomePage() {
-  const dispatch = useDispatch()
-  const [post, setPost] = useState([]);
-
-  useEffect(() => {
-    getPost();
-    dispatch(getProfil())
-  
->>>>>>> dev
-  }, []);
+},[])
 
   const getPost = () => {
     API.getPost.then((resp) => {
@@ -59,33 +29,19 @@ function HomePage() {
     });
   };
 
-  return (
-    <>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      {/* <Header></Header> */}
-=======
->>>>>>> dev
-=======
->>>>>>> dev
-      <FloatingBtn></FloatingBtn>
-      <HeroSection></HeroSection>
-      <Poster></Poster>
-      <HeroSubSection></HeroSubSection>
-      <Poster2></Poster2>
-      {post.length > 0 ? <CeritaComp posts={post} /> : null}
-      {post.length > 0 ? <BeritaComp posts={post} /> : null}
-<<<<<<< HEAD
-<<<<<<< HEAD
-      {post.length > 0 ? <EventComp posts={post} /> : null}
-=======
-      
->>>>>>> dev
-=======
-      
->>>>>>> dev
-    </>
-  );
-}
+    return (
+      <>
+        {/* <Header></Header> */}
+        <FloatingBtn></FloatingBtn>
+        <HeroSection></HeroSection>
+        <Poster></Poster>
+        <HeroSubSection></HeroSubSection>
+        <Poster2></Poster2>
+        {post.length>0? <CeritaComp posts={post} />:null }
+        {post.length>0? <BeritaComp posts={post} />:null }
+        
+      </>
+    );
+  }
 
 export default HomePage;

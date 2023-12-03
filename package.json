@@ -18,16 +18,9 @@
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.2",
     "dayjs": "^1.11.10",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "embla-carousel-autoplay": "^8.0.0-rc15",
     "embla-carousel-react": "^8.0.0-rc15",
-=======
     "ionicons": "^7.2.1",
->>>>>>> dev
-=======
-    "ionicons": "^7.2.1",
->>>>>>> dev
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.1.3",
