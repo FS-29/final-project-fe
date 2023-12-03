@@ -4,18 +4,21 @@ import HeroSection from "../component/heroSection/HeroSection";
 import HeroSubSection from "../component/heroSection/HeroSubSection";
 import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
-import API from '../Sevices/API';
-import CeritaComp from '../component/ceritaComp/ceritaComp';
-import BeritaComp from '../component/beritaComp/BeritaComp';
-
+import API from "../Sevices/API";
+import CeritaComp from "../component/ceritaComp/CeritaComp";
+import BeritaComp from "../component/beritaComp/BeritaComp";
+import {useDispatch } from "react-redux";
+import { getProfil } from "../redux/reducers/profil-reducer";
 
 function HomePage() {
+  const dispatch = useDispatch()
+  const [post, setPost] = useState([]);
 
-  const [post, setPost] = useState([])
-
-  useEffect(()=>{
+  useEffect(() => {
     getPost();
-},[])
+    dispatch(getProfil())
+  
+  }, []);
 
   const getPost = () => {
     API.getPost.then((resp) => {
@@ -29,19 +32,18 @@ function HomePage() {
     });
   };
 
-    return (
-      <>
-        {/* <Header></Header> */}
-        <FloatingBtn></FloatingBtn>
-        <HeroSection></HeroSection>
-        <Poster></Poster>
-        <HeroSubSection></HeroSubSection>
-        <Poster2></Poster2>
-        {post.length>0? <CeritaComp posts={post} />:null }
-        {post.length>0? <BeritaComp posts={post} />:null }
-        
-      </>
-    );
-  }
+  return (
+    <>
+      <FloatingBtn></FloatingBtn>
+      <HeroSection></HeroSection>
+      <Poster></Poster>
+      <HeroSubSection></HeroSubSection>
+      <Poster2></Poster2>
+      {post.length > 0 ? <CeritaComp posts={post} /> : null}
+      {post.length > 0 ? <BeritaComp posts={post} /> : null}
+      
+    </>
+  );
+}
 
 export default HomePage;
