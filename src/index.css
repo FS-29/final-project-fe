@@ -6,3 +6,12 @@
     font-family: 'Sometype Mono' ;
     src: url('./assets/font/PlusJakartaSans-VariableFont_wght.ttf');
 }
+
+.slick-slider {
+    margin: 0 -10px; 
+  }
+  
+  .slick-slider .slick-slide {
+    margin: 0 10px;
+  }
+  
