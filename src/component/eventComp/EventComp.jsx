@@ -6,7 +6,15 @@ import axios from "axios";
 
 function EventComp({ posts }) {
   const [data, setData] = useState([]);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
+
+  const autoplayOptions = {
+    delay: 4000, // Atur delay sesuai kebutuhan Anda
+    root: (emblaRoot) => emblaRoot.parentElement,
+    speed: 1000, // Atur kecepatan autoplay
+    loop: true, // Atur apakah autoplay loop
+  };
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay(autoplayOptions)]);
 
   const scrollPrev = useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
