@@ -7,8 +7,9 @@ export default defineConfig({
 
   build: {
     rollupOptions: {
-      external: ['embla-carousel-react'], // Add the problematic module here
+      external: ['embla-carousel-react', 'embla-carousel-autoplay'], // Add both modules here
     },
   },
+
 
 })
