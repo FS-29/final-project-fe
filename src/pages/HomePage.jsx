@@ -42,7 +42,7 @@ function HomePage() {
       <Poster2></Poster2>
       {post.length > 0 ? <CeritaComp posts={post} /> : null}
       {post.length > 0 ? <BeritaComp posts={post} /> : null}
-      {/* {post.length > 0 ? <EventComp posts={post} /> : null} */}
+      {post.length > 0 ? <EventComp posts={post} /> : null}
       
     </>
   );
