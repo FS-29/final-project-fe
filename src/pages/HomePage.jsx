@@ -9,14 +9,15 @@ import CeritaComp from "../component/ceritaComp/CeritaComp";
 import BeritaComp from "../component/beritaComp/BeritaComp";
 import {useDispatch } from "react-redux";
 import { getProfil } from "../redux/reducers/profil-reducer";
+import EventComp from "../component/eventComp/EventComp";
 
 function HomePage() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const [post, setPost] = useState([]);
 
   useEffect(() => {
     getPost();
-    dispatch(getProfil())
+    // dispatch(getProfil())
   
   }, []);
 
@@ -41,6 +42,7 @@ function HomePage() {
       <Poster2></Poster2>
       {post.length > 0 ? <CeritaComp posts={post} /> : null}
       {post.length > 0 ? <BeritaComp posts={post} /> : null}
+      {post.length > 0 ? <EventComp posts={post} /> : null}
       
     </>
   );
