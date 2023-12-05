@@ -5,7 +5,10 @@ import AlamatUser from "../../assets/svg/AlamatUser";
 import SekolahUsser from "../../assets/svg/SekolahUser";
 import LaporanUser from "../../assets/svg/LaporanUser";
 import PesanUser from "../../assets/svg/PesanUser";
-import OutLogo from "../../assets/svg/OutLogo";
+import BeritaAdmin from "../../assets/svg/BeritaAdmin";
+import EventAdmin from "../../assets/svg/EventAdmin";
+import PendidikanKonselor from "../../assets/svg/PendidikanKonselor";
+
 
 function SideBarComp({}) {
   const { role } = useSelector((state) => state.profilUser);
@@ -16,26 +19,27 @@ function SideBarComp({}) {
           <BtnComp
             iconbtn={<DataUser styleSVG={"fill-white"}></DataUser>}
             text={"Data Pribadi"}
+            idBtn={1}
           ></BtnComp>
           <BtnComp
             iconbtn={<AlamatUser styleSVG={"fill-white"}></AlamatUser>}
             text={"Alamat"}
+            idBtn={2}
           ></BtnComp>
           <BtnComp
             iconbtn={<SekolahUsser styleSVG={"fill-white"}></SekolahUsser>}
             text={"Sekolah"}
+            idBtn={3}
           ></BtnComp>
           <BtnComp
             iconbtn={<LaporanUser styleSVG={"fill-white"}></LaporanUser>}
             text={"Laporan"}
+            idBtn={4}
           ></BtnComp>
           <BtnComp
             iconbtn={<PesanUser styleSVG={"fill-white"}></PesanUser>}
             text={"Pesan"}
-          ></BtnComp>
-          <BtnComp
-            iconbtn={<OutLogo styleSVG={"stroke-white"}></OutLogo>}
-            text={"Keluar"}
+            idBtn={5}
           ></BtnComp>
         </div>
       );
@@ -45,26 +49,22 @@ function SideBarComp({}) {
           <BtnComp
             iconbtn={<DataUser styleSVG={"fill-white"}></DataUser>}
             text={"Data Pribadi"}
+            idBtn={1}
           ></BtnComp>
           <BtnComp
-            iconbtn={<AlamatUser styleSVG={"fill-white"}></AlamatUser>}
-            text={"Alamat"}
-          ></BtnComp>
-          <BtnComp
-            iconbtn={<SekolahUsser styleSVG={"fill-white"}></SekolahUsser>}
-            text={"Sekolah"}
+            iconbtn={<PendidikanKonselor styleSVG={"fill-white"}></PendidikanKonselor>}
+            text={"Pendidikan"}
+            idBtn={2}
           ></BtnComp>
           <BtnComp
             iconbtn={<LaporanUser styleSVG={"fill-white"}></LaporanUser>}
             text={"Laporan"}
+            idBtn={3}
           ></BtnComp>
           <BtnComp
             iconbtn={<PesanUser styleSVG={"fill-white"}></PesanUser>}
             text={"Pesan"}
-          ></BtnComp>
-          <BtnComp
-            iconbtn={<OutLogo styleSVG={"stroke-white"}></OutLogo>}
-            text={"Keluar"}
+            idBtn={4}
           ></BtnComp>
         </div>
       );
@@ -74,26 +74,27 @@ function SideBarComp({}) {
           <BtnComp
             iconbtn={<DataUser styleSVG={"fill-white"}></DataUser>}
             text={"Data Pribadi"}
-          ></BtnComp>
-          <BtnComp
-            iconbtn={<AlamatUser styleSVG={"fill-white"}></AlamatUser>}
-            text={"Alamat"}
-          ></BtnComp>
-          <BtnComp
-            iconbtn={<SekolahUsser styleSVG={"fill-white"}></SekolahUsser>}
-            text={"Sekolah"}
+            idBtn={1}
           ></BtnComp>
           <BtnComp
             iconbtn={<LaporanUser styleSVG={"fill-white"}></LaporanUser>}
             text={"Laporan"}
+            idBtn={2}
           ></BtnComp>
           <BtnComp
             iconbtn={<PesanUser styleSVG={"fill-white"}></PesanUser>}
             text={"Pesan"}
+            idBtn={3}
           ></BtnComp>
           <BtnComp
-            iconbtn={<OutLogo styleSVG={"stroke-white"}></OutLogo>}
-            text={"Keluar"}
+            iconbtn={<BeritaAdmin styleSVG={"fill-white"}></BeritaAdmin>}
+            text={"Berita"}
+            idBtn={4}
+          ></BtnComp>
+          <BtnComp
+            iconbtn={<EventAdmin styleSVG={"fill-white"}></EventAdmin>}
+            text={"Event"}
+            idBtn={5}
           ></BtnComp>
         </div>
       );

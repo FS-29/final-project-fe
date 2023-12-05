@@ -58,14 +58,12 @@ export function notLoading() {
   }
 
 export const login = (dataUser) => async (dispatch,getState) => {
-    const {authUser} = getState()
-    console.log(authUser);
+  const {authUser} = getState()
   dispatch(isLoading());
   const { data } = await axios.post(API_KEY + "auth/login", dataUser, {
     headers: { "Access-Control-Allow-Origin": true },
   });
   if (data.message == "berhasil login") {
-    console.log("bisamasuk");
     localStorage.setItem("token", data.token);
     dispatch(isLoginReducer());
   }
