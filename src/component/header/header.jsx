@@ -7,13 +7,21 @@ import { useEffect } from "react";
 import FloatingProfil from "./FloatingProfil";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { getProfil } from "../../redux/reducers/profil-reducer";
 
 function Header() {
+  const dispatch = useDispatch()
   const { isLogin } = useSelector((state) => state.authUser);
   const [isTop, setIsTop] = useState(true);
   const [prevSPos, setPrevSPos] = useState(0);
   const [scrollUp, setScrollUp] = useState(false);
   const [floating, setFloating] = useState(false);
+
+  useEffect(() => {
+    dispatch(getProfil())
+  
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY;

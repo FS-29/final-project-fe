@@ -12,12 +12,12 @@ import { getProfil } from "../redux/reducers/profil-reducer";
 import EventComp from "../component/eventComp/EventComp";
 
 function HomePage() {
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
   const [post, setPost] = useState([]);
 
   useEffect(() => {
     getPost();
-    dispatch(getProfil())
+    // dispatch(getProfil())
   
   }, []);
 
