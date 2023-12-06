@@ -3,6 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
   ],
   theme: {
     extend: {
@@ -31,6 +32,9 @@ export default {
         color7:{
           DEFAULT: '#FAFAFA'
         },
+        color8:{
+          DEFAULT: '#BAE7FF'
+        }
       },
       width:{
         '640':'48rem',
@@ -38,6 +42,9 @@ export default {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+  darkMode:'false'
 }
 
