@@ -30,6 +30,7 @@ function HomePage() {
     })
 }
 
+
     return (
       <>
         {/* <Header></Header> */}
@@ -38,7 +39,8 @@ function HomePage() {
         <Poster></Poster>
         <HeroSubSection></HeroSubSection>
         <Poster2></Poster2>
-        {post.length>0? <CeritaComp posts={post} />:null }
+        {post.length > 0 ? <CeritaComp posts={[post[0], post[1], post[2]]} /> : null}
+
         
       </>
     );
