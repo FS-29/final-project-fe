@@ -1,10 +1,11 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import LaporanIcon from "../../assets/svg/LaporanIcon";
 import PesanIcon from "../../assets/svg/PesanIcon";
 
-function FloatingBtn() {
+function FloatingBtn({isBottom}) {
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className={`fixed ${isBottom?'bottom-10':'bottom-5'} right-5 z-40`}>
       <div className="flex gap-4">
         <NavLink to="/laporan">
           <button

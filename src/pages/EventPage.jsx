@@ -4,7 +4,6 @@ import APICerita from "../Sevices/APICerita";
 import EventCard from "../component/event/EventCard";
 import event1 from "../assets/svg/event1.svg";
 import event2 from "../assets/svg/event2.svg";
-import Footer from "../component/footer/footer";
 
 function EventPage() {
   const [post, setPost] = useState([]);
@@ -55,7 +54,7 @@ function EventPage() {
       </div>
 
       <Filter></Filter>
-      {post.length > 0 ? <EventCard posts={[post[8], post[6], post[9], post[11], post[7], post[10]]} /> : null}
+      {post.length > 0 ? <EventCard posts={post} /> : null}
       <Footer></Footer>
     </>
   );

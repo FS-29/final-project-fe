@@ -6,7 +6,6 @@ import ContentEdukasi from "../component/edukasi/ContentEdukasi";
 
 function EdukasiPage() {
   const [contentId, setContentId] = useState(1);
-  console.log(contentId);
   return (
     <>
       <div className="flex flex-row justify-center px-12 pt-24">
