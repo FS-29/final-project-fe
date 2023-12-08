@@ -4,7 +4,6 @@ import SearchFilter from "../component/beritaComp/SearchFilter";
 import berita1 from "../assets/svg/berita1.svg";
 import berita2 from "../assets/svg/berita2.svg";
 import BeritaCard from "../component/beritaComp/BeritaCard";
-import Footer from "../component/footer/footer";
 import BeritaIntro from "../component/beritaComp/BeritaIntro";
 
 function BeritaPage() {
@@ -59,7 +58,6 @@ function BeritaPage() {
         {post.length > 0 ? <BeritaIntro post={post[6]} /> : null}
         {post.length > 0 ? <BeritaCard posts={[post[7], post[8], post[9], post[10], post[11]]} /> : null}
       </div>
-      <Footer></Footer>
     </>
   );
 }

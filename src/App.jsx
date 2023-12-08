@@ -10,14 +10,40 @@ import EventPage from "./pages/EventPage";
 import DashboardPage from "./pages/DashboardPage";
 import Header from "./component/header/header";
 import LaporanPage from "./pages/LaporanPage";
+import Footer from "./component/footer/footer";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { isLoginReducer } from "./redux/reducers/auth-reducers";
 
 function App() {
+  const { isLogin } = useSelector((state) => state.authUser);
+  const dispatch =useDispatch()
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if (token) {
+      dispatch(isLoginReducer())
+    }
+  },[])
   return (
     <>
       <Routes>
         <Route path="*" element={<HeaderAndRoutes />}></Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        <Route
+          path="/login"
+          element={isLogin ? <HeaderAndRoutes /> : <LoginPage />}
+        />
+        <Route
+          path="/register"
+          element={isLogin ? <HeaderAndRoutes /> : <RegisterPage />}
+        />
+        <Route
+          path="/dashboard"
+          element={isLogin ? <Dashboard /> : <LoginPage />}
+        />
+        <Route
+          path="/laporan"
+          element={isLogin ? <Laporan /> : <LoginPage />}
+        />
       </Routes>
     </>
   );
@@ -33,9 +59,32 @@ function HeaderAndRoutes() {
         <Route path="/cerita" element={<CeritaPage />} />
         <Route path="/edukasi" element={<EdukasiPage />} />
         <Route path="/event" element={<EventPage />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/laporan" element={<LaporanPage />} />
       </Routes>
+      <Footer></Footer>
+    </>
+  );
+}
+
+function Dashboard() {
+  return (
+    <>
+      <Header></Header>
+      <Routes>
+        <Route index element={<DashboardPage />} />
+      </Routes>
+      <Footer></Footer>
+    </>
+  );
+}
+
+function Laporan() {
+  return (
+    <>
+      <Header></Header>
+      <Routes>
+        <Route index element={<LaporanPage />} />
+      </Routes>
+      <Footer></Footer>
     </>
   );
 }

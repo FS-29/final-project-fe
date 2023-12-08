@@ -1,18 +1,27 @@
 import headerLogo from "../../assets/img/Logo.png";
-import dummys from "../../assets/img/dummys.jpg";
+import dummys from "../../assets/svg/profilPolos.svg";
 import Subcomp from "./Subcomp";
 import LoginLogo from "../../assets/svg/LoginLogo";
 import { useState } from "react";
 import { useEffect } from "react";
 import FloatingProfil from "./FloatingProfil";
 import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfil } from "../../redux/reducers/profil-reducer";
 
 function Header() {
+  const dispatch = useDispatch()
+  const { isLogin } = useSelector((state) => state.authUser);
   const [isTop, setIsTop] = useState(true);
   const [prevSPos, setPrevSPos] = useState(0);
   const [scrollUp, setScrollUp] = useState(false);
   const [floating, setFloating] = useState(false);
-  const isLogin = false;
+
+  useEffect(() => {
+    dispatch(getProfil())
+  
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY;
@@ -26,7 +35,6 @@ function Header() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevSPos, isTop]);
-
   return (
     <header
       id="header"
