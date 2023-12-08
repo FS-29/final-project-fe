@@ -55,7 +55,7 @@ function EventPage() {
       </div>
 
       <Filter></Filter>
-      {post.length > 0 ? <EventCard posts={post} /> : null}
+      {post.length > 0 ? <EventCard posts={[post[8], post[6], post[9], post[11], post[7], post[10]]} /> : null}
       <Footer></Footer>
     </>
   );
