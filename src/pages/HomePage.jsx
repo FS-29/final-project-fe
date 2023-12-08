@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import FloatingBtn from "../component/floatingbtn/FloatingBtn";
-// import Header from "../component/header/header";
 import HeroSection from "../component/heroSection/HeroSection";
 import HeroSubSection from "../component/heroSection/HeroSubSection";
 import Poster from "../component/heroSection/Poster";
 import Poster2 from "../component/heroSection/Poster2";
-import API from '../Sevices/API';
-import CeritaComp from '../component/ceritaComp/ceritaComp';
-import BeritaComp from '../component/beritaComp/BeritaComp';
-
+import API from "../Sevices/API";
+import CeritaComp from "../component/ceritaComp/CeritaComp";
+import BeritaComp from "../component/beritaComp/BeritaComp";
+import {useDispatch } from "react-redux";
+import { getProfil } from "../redux/reducers/profil-reducer";
+import EventComp from "../component/eventComp/EventComp";
 
 function HomePage() {
+  // const dispatch = useDispatch()
+  const [post, setPost] = useState([]);
 
-  const [post, setPost] = useState([])
-
-  useEffect(()=>{
+  useEffect(() => {
     getPost();
-},[])
+    // dispatch(getProfil())
+  
+  }, []);
 
   const getPost=()=>{
     API.getPost.then(resp=>{
@@ -46,5 +49,4 @@ function HomePage() {
     );
   }
 
-  
-  export default HomePage;
+export default HomePage;
