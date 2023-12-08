@@ -40,7 +40,7 @@ function HomePage() {
         <HeroSubSection></HeroSubSection>
         <Poster2></Poster2>
         {post.length>0? <CeritaComp posts={post} />:null }
-        {post.length>0? <BeritaComp posts={post} />:null }
+        {post.length>0? <BeritaComp posts={[post[3], post[4], post[5]]} />:null }
         
       </>
     );
