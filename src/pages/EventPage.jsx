@@ -55,6 +55,7 @@ function EventPage() {
 
       <Filter></Filter>
       {post.length > 0 ? <EventCard posts={post} /> : null}
+      <Footer></Footer>
     </>
   );
 }
