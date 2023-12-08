@@ -57,7 +57,7 @@ function CeritaPage() {
 
       <div>
         <Search></Search>
-        {post.length > 0 ? <CeritaCard posts={post} /> : null}
+        {post.length > 0 ? <CeritaCard posts={[post[1], post[2], post[3], post[4], post[5], post[6]]} /> : null}
         <Footer></Footer>
       </div>
     </>
