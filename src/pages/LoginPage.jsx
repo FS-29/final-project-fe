@@ -6,11 +6,13 @@ import Visibility from "../assets/svg/Visibility";
 import VisibilityOff from "../assets/svg/VisibilityOff";
 import { login } from "../redux/reducers/auth-reducers";
 import LoadingComp from "../component/loadingComp/LoadingComp";
+import { useNavigate } from "react-router-dom";
 
 
 function LoginPage() {
   // const {isLoading} = useSelector((state)=> state.authUser)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const styleInput = "focus:ring-color8 ring-0 border-2 border-gray-300 focus-within:border-color3 focus:border-color3 active:border-color3";
   const styleLabel = "block font-medium leading-6 text-gray-900";
   const [fullInput, setFullInput] = useState(false)
@@ -108,7 +110,7 @@ function LoginPage() {
           </div>
           <div className="flex flex-row justify-center text-color5">
             <h1>Belum punya akun?</h1>&emsp;
-            <a href="/register" className="hover:text-color3 font-bold">Sign Up</a>
+            <button onClick={()=>navigate("/register")} className="hover:text-color3 font-bold"> Sign Up</button>
           </div>
         </div>
       </div>
