@@ -23,7 +23,7 @@ function FloatingProfil({ img }) {
         <img
           src={foto==null?img:foto}
           alt="profil picture"
-          className="h-28 w-28 rounded-full"
+          className="h-28 w-28 rounded-full bg-white"
         />
         <h3 className="text-violet-10 text-xl font-extrabold font-jakarta">
         {username}
