@@ -95,6 +95,7 @@ function FormLaporan({}) {
     <>
       <div className="grid grid-cols-1 gap-4 bg-white w-full rounded-lg p-7">
         <div className="grid grid-cols-1 gap-2">
+          
           <label htmlFor="nama" className={styleLabel}>
             Nama
           </label>
