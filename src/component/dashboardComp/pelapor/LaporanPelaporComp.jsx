@@ -9,25 +9,25 @@ function LaporanPelaporComp({ tgl, statusLap, deskripsi }) {
           <div
             className={`${
               statusLap == 1
-                ? "bg-green-500"
-                : statusLap == 2
-                ? "bg-red-500"
-                : statusLap == 3
-                ? "bg-yellow-500"
-                : statusLap == 4
                 ? "bg-blue-500"
+                : statusLap == 2
+                ? "bg-yellow-500"
+                : statusLap == 3
+                ? "bg-red-500"
+                : statusLap == 4
+                ? "bg-green-500"
                 : ""
             } w-3 h-3 rounded-full`}
           ></div>
           <h2>
             {statusLap == 1
-              ? "Selesai"
+              ? "Antrian"
               : statusLap == 2
               ? "Diproses"
               : statusLap == 3
               ? "Diproses"
               : statusLap == 4
-              ? "Antrian"
+              ? "Selesai"
               : ""}
           </h2>
         </div>
