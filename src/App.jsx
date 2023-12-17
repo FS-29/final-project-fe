@@ -21,7 +21,7 @@ function App() {
   const dispatch =useDispatch()
   useEffect(()=>{
     const token = localStorage.getItem('token')
-    console.log(token);
+    // console.log(token);
 
     if (token!=null) {
       dispatch(isLoginReducer())

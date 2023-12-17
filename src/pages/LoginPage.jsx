@@ -7,10 +7,11 @@ import VisibilityOff from "../assets/svg/VisibilityOff";
 import { login } from "../redux/reducers/auth-reducers";
 import LoadingComp from "../component/loadingComp/LoadingComp";
 import { useNavigate } from "react-router-dom";
+import StatusFloating from "../component/statusComp/StatusFloating";
 
 
 function LoginPage() {
-  // const {isLoading} = useSelector((state)=> state.authUser)
+  const {statusLogin} = useSelector((state)=> state.authUser)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const styleInput = "focus:ring-color8 ring-0 border-2 border-gray-300 focus-within:border-color3 focus:border-color3 active:border-color3";
@@ -35,8 +36,6 @@ function LoginPage() {
   const handlerLogin = () =>{
     if (fullInput) {
       dispatch(login(formLogin))
-      
-      
     }
   }
   
@@ -115,6 +114,7 @@ function LoginPage() {
         </div>
       </div>
       <LoadingComp ></LoadingComp>
+      {statusLogin!=0?<StatusFloating/>:''}
     </>
   );
 }

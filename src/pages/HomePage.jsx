@@ -21,33 +21,6 @@ function HomePage() {
   
   }, []);
 
-<<<<<<< HEAD
-  const getPost = () => {
-    API.getPost.then((resp) => {
-      const result = resp.data.map((item) => ({
-        id: item.id,
-        title: item.title, // Ubah sesuai dengan struktur data yang benar
-        content: item.content, // Ubah sesuai dengan struktur data yang benar
-        image: item.image,
-      }));
-      setPost(result);
-    });
-  };
-
-  return (
-    <>
-      {/* <FloatingBtn></FloatingBtn> */}
-      <HeroSection></HeroSection>
-      <Poster></Poster>
-      <HeroSubSection></HeroSubSection>
-      <Poster2></Poster2>
-      {post.length > 0 ? <CeritaComp posts={post} /> : null}
-      {post.length > 0 ? <BeritaComp posts={post} /> : null}
-      {post.length > 0 ? <EventComp posts={post} /> : null}
-      
-    </>
-  );
-=======
   const getPost=()=>{
     API.getPost.then(resp=>{
         const result=resp.data.map(item=>({
@@ -57,10 +30,8 @@ function HomePage() {
           image: item.image,
         }));
         setPost(result);
-        
     })
->>>>>>> dev
-}
+  }
 
     return (
       <>
@@ -72,6 +43,7 @@ function HomePage() {
         <Poster2></Poster2>
         {post.length>0? <CeritaComp posts={post} />:null }
         {post.length>0? <BeritaComp posts={[post[3], post[4], post[5]]} />:null }
+        {post.length > 0 ? <EventComp posts={[post[0], post[2], post[5]]} /> : null}
         
       </>
     );
