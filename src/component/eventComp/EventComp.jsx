@@ -31,7 +31,7 @@ function EventComp({ posts }) {
           "https://655c3345ab37729791aa0ce7.mockapi.io/articles/"
         );
         setData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }

@@ -74,7 +74,7 @@ export const register = (dataUser, role) => async (dispatch) => {
   const { data } = await axios.post(API_KEY + "auth/register", dataUser, {
     headers: { "Access-Control-Allow-Origin": true, Role: role },
   });
-  console.log(data);
+  // console.log(data);
   if (data != null) {
     dispatch(login({ email: dataUser.email, pass: dataUser.pass }));
   }

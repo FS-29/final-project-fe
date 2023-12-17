@@ -35,7 +35,7 @@ function HomePage() {
 
   return (
     <>
-      <FloatingBtn></FloatingBtn>
+      {/* <FloatingBtn></FloatingBtn> */}
       <HeroSection></HeroSection>
       <Poster></Poster>
       <HeroSubSection></HeroSubSection>
