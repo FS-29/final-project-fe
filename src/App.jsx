@@ -14,13 +14,14 @@ import Footer from "./component/footer/footer";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { isLoginReducer } from "./redux/reducers/auth-reducers";
+import FloatingBtn from "./component/floatingbtn/FloatingBtn";
 
 function App() {
   const { isLogin } = useSelector((state) => state.authUser);
   const dispatch =useDispatch()
   useEffect(()=>{
     const token = localStorage.getItem('token')
-    console.log(token);
+    // console.log(token);
 
     if (token!=null) {
       dispatch(isLoginReducer())
@@ -62,6 +63,7 @@ function HeaderAndRoutes() {
         <Route path="/edukasi" element={<EdukasiPage />} />
         <Route path="/event" element={<EventPage />} />
       </Routes>
+      <FloatingBtn></FloatingBtn>
       <Footer></Footer>
     </>
   );
@@ -71,9 +73,7 @@ function Dashboard() {
   return (
     <>
       <Header></Header>
-      <Routes>
-        <Route index element={<DashboardPage />} />
-      </Routes>
+      <DashboardPage></DashboardPage>
       <Footer></Footer>
     </>
   );
@@ -83,9 +83,7 @@ function Laporan() {
   return (
     <>
       <Header></Header>
-      <Routes>
-        <Route index element={<LaporanPage />} />
-      </Routes>
+      <LaporanPage></LaporanPage>
       <Footer></Footer>
     </>
   );

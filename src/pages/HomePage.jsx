@@ -30,9 +30,8 @@ function HomePage() {
           image: item.image,
         }));
         setPost(result);
-        
     })
-}
+  }
 
     return (
       <>
@@ -44,6 +43,7 @@ function HomePage() {
         <Poster2></Poster2>
         {post.length>0? <CeritaComp posts={post} />:null }
         {post.length>0? <BeritaComp posts={[post[3], post[4], post[5]]} />:null }
+        {post.length > 0 ? <EventComp posts={[post[0], post[2], post[5]]} /> : null}
         
       </>
     );

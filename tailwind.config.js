@@ -34,6 +34,9 @@ export default {
         },
         color8:{
           DEFAULT: '#BAE7FF'
+        },
+        color9:{
+          DEFAULT: '#D6E4FF'
         }
       },
       width:{

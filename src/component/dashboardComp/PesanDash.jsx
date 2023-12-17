@@ -17,7 +17,7 @@ function PesanDash() {
         </div>
         <div className="w-3/4 flex flex-col">
           <div className="flex flex-row h-1/6 items-center gap-3 bg-color3 w-full p-2">
-            <img className="w-20" src={img} alt="" />
+            <img className="w-20 bg-white rounded-full" src={img} alt="" />
             <div className="flex flex-col gap-1">
               <h1 className="font-extrabold text-xl">{nama}</h1>
               <h2 className="text-sm">{role}</h2>

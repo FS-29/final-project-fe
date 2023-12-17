@@ -7,9 +7,11 @@ import VisibilityOff from "../assets/svg/VisibilityOff";
 import { register } from "../redux/reducers/auth-reducers";
 import LoadingComp from "../component/loadingComp/LoadingComp";
 import { useNavigate } from "react-router-dom";
+import StatusFloatingRegis from "../component/statusComp/StatusFloatingRegis";
 
 
 function RegisterPage() {
+  const {statusRegis} = useSelector((state)=> state.authUser)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const styleInput = "focus:ring-color8 ring-0 border-2 border-gray-300 focus-within:border-color3 focus:border-color3 active:border-color3";
@@ -33,8 +35,6 @@ function RegisterPage() {
       dispatch(register(formLogin,role))
     }
   }
-
-  // console.log(role);
   return (
     <>
       <div className="grid grid-cols-2 gap-4 bg-color8 p-4 min-h-screen font-jakarta">
@@ -199,6 +199,7 @@ function RegisterPage() {
         </div>
       </div>
       <LoadingComp/>
+      {statusRegis!=0?<StatusFloatingRegis/>:''}
     </>
   );
 }
