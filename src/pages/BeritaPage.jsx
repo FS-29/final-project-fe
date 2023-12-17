@@ -55,8 +55,8 @@ function BeritaPage() {
       </div>
       <SearchFilter></SearchFilter>
       <div className="bg-color8">
-        {post.length > 0 ? <BeritaIntro post={post[0]} /> : null}
-        {post.length > 0 ? <BeritaCard posts={post} /> : null}
+        {post.length > 0 ? <BeritaIntro post={post[6]} /> : null}
+        {post.length > 0 ? <BeritaCard posts={[post[7], post[8], post[9], post[10], post[11]]} /> : null}
       </div>
     </>
   );

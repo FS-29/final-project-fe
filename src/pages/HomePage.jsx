@@ -21,6 +21,7 @@ function HomePage() {
   
   }, []);
 
+<<<<<<< HEAD
   const getPost = () => {
     API.getPost.then((resp) => {
       const result = resp.data.map((item) => ({
@@ -46,6 +47,34 @@ function HomePage() {
       
     </>
   );
+=======
+  const getPost=()=>{
+    API.getPost.then(resp=>{
+        const result=resp.data.map(item=>({
+          id: item.id,
+          title: item.title, // Ubah sesuai dengan struktur data yang benar
+          content: item.content, // Ubah sesuai dengan struktur data yang benar
+          image: item.image,
+        }));
+        setPost(result);
+        
+    })
+>>>>>>> dev
 }
+
+    return (
+      <>
+        {/* <Header></Header> */}
+        <FloatingBtn></FloatingBtn>
+        <HeroSection></HeroSection>
+        <Poster></Poster>
+        <HeroSubSection></HeroSubSection>
+        <Poster2></Poster2>
+        {post.length>0? <CeritaComp posts={post} />:null }
+        {post.length>0? <BeritaComp posts={[post[3], post[4], post[5]]} />:null }
+        
+      </>
+    );
+  }
 
 export default HomePage;
